@@ -43,7 +43,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       const searchQueries = words.map(word => ({
         OR: [
           { titulo: { contains: word} },
-          { descripcion: { contains: word} }
+          { descripcion: { contains: word} },
+          { ciudad: { contains: word} },
+          { departamento: { contains: word} }
         ]
       }));
   
