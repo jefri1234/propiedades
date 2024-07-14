@@ -13,11 +13,17 @@ function Navbar() {
     <nav className=" bg-slate-900 flex justify-between px-24 text-white items-center py-3">
         <Link href="/">
           <h1>
-              NEXT GOOGLE
+              Inmoviliaria
           </h1>
         </Link>
         <Link href="/dashboard">
                     Dashboard
+                </Link>
+                <Link href="#">
+                    comprar
+                </Link>
+                <Link href="#">
+                    vender
                 </Link>
       {session?.user ?(
                 <div className=" flex gap-x-2 items-center">
