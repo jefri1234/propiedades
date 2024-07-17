@@ -31,7 +31,7 @@ model Publicacion {
   titulo           String
   descripcion      String
   precio           Float
-  estado           BigInt //(1)activo
+  estado           Int //(1)activo
   departamento     String
   ciudad           String
   coordenadas      String
