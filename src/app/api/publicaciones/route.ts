@@ -13,7 +13,8 @@ interface Publicacion {
     ciudad: string;
     coordenadas: string;
     direccion: string;
-    tipoid: number;
+    tipoPublicacionid: number;
+    tipoPropiedadid : number;
   }
 
 const stopWords = new Set([
@@ -81,14 +82,19 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
-      const { titulo, descripcion, precio, estado, departamento, ciudad, coordenadas, direccion, tipoid }: Publicacion = await request.json();
+      const { titulo, descripcion, precio, estado, departamento, ciudad, coordenadas, direccion, tipoPublicacionid, tipoPropiedadid }: Publicacion = await request.json();
   
+      // Verificar que el tipoPublicacionid existe
+      const tipoPublicacionExistente = await prisma.tipoPublicacion.findUnique({
+        where: { idTipoPublicacion: tipoPublicacionid },
+      });
+      
       // Verificar que el tipoid existe
-      const tipoExistente = await prisma.tipoPublicacion.findUnique({
-        where: { idTipoPublicacion: tipoid },
+      const tipoPropiedadExistente = await prisma.tipoPropiedad.findUnique({
+        where: { idTipoPropiedad: tipoPropiedadid },
       });
   
-      if (!tipoExistente) {
+      if (!tipoPublicacionExistente && !tipoPropiedadExistente) {
         return NextResponse.json({
           message: "El tipo de publicación especificado no existe",
           status: 400,
@@ -106,7 +112,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           coordenadas,
           direccion,
           tipoPublicacion: {
-            connect: { idTipoPublicacion: tipoid }
+            connect: { idTipoPublicacion: tipoPublicacionid }
+          },
+          tipoPropiedad: {
+            connect: { idTipoPropiedad: tipoPropiedadid }
           }
         }
       });
