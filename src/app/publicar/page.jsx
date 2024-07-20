@@ -2,7 +2,7 @@
 
 function Publicar() {
   return (
-    <div className="bg-gray-100 flex items-center justify-center h-screen pt-20">
+    <div className="bg-gray-100 flex items-center justify-center py-10">
        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
         <h2 class="text-2xl font-bold mb-6">Formulario de Publicación</h2>
         <form action="#" method="POST">
