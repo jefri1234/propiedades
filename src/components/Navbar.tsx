@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { signIn, useSession, signOut } from 'next-auth/react'
 import { useRouter } from "next/navigation";
+
 function Navbar() {
 
   const router = useRouter()
@@ -29,7 +30,7 @@ function Navbar() {
             <a className="py-2 ps-px sm:px-3 font-medium text-blue-600 dark:text-blue-500" href="#" aria-current="page">Inicio</a>
             <a className="py-2 ps-px sm:px-3 font-medium text-gray-500 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" href="#">Alquilar</a>
             <a className="py-2 ps-px sm:px-3 font-medium text-gray-500 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" href="#">Comprar</a>
-            <a className="py-2 ps-px sm:px-3 font-medium text-gray-500 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" href="#">Vender</a>
+            <Link className="py-2 ps-px sm:px-3 font-medium text-gray-500 hover:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500" href="/publicar">Publicar</Link>
 
             {/* <div className="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] py-3 ps-px sm:px-3">
           <button type="button" className="flex items-center w-full text-gray-500 hover:text-gray-400 font-medium dark:text-neutral-400 dark:hover:text-neutral-500">
