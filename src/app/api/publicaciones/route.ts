@@ -10,7 +10,8 @@ interface Publicacion {
     precio: number;
     estado: number; // (1)activo
     departamento: string;
-    ciudad: string;
+    provincia: string;
+    distrito: string;
     coordenadas: string;
     direccion: string;
     tipoPublicacionid: number;
@@ -45,7 +46,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         OR: [
           { titulo: { contains: word} },
           { descripcion: { contains: word} },
-          { ciudad: { contains: word} },
+          { distrito: { contains: word} },
+          { provincia: { contains: word} },
           { departamento: { contains: word} }
         ]
       }));
@@ -82,7 +84,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
-      const { titulo, descripcion, precio, estado, departamento, ciudad, coordenadas, direccion, tipoPublicacionid, tipoPropiedadid }: Publicacion = await request.json();
+      const { titulo, descripcion, precio, estado, departamento, provincia, distrito, coordenadas, direccion, tipoPublicacionid, tipoPropiedadid }: Publicacion = await request.json();
   
       // Verificar que el tipoPublicacionid existe
       const tipoPublicacionExistente = await prisma.tipoPublicacion.findUnique({
@@ -108,7 +110,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           precio,
           estado,
           departamento,
-          ciudad,
+          provincia,
+          distrito,
           coordenadas,
           direccion,
           tipoPublicacion: {
