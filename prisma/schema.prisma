@@ -20,6 +20,12 @@ model Usuario{
   dni String 
 }
 
+model TipoPropiedad {
+  idTipoPropiedad Int @id @default(autoincrement())
+  nombre String // Departamento, Habitacion, Terreno, Casa
+  publicacion Publicacion[]
+}
+
 model TipoPublicacion {
   idTipoPublicacion Int @id @default(autoincrement())
   nombre            String // Departamento, Habitacion, Terreno, Casa
@@ -36,6 +42,9 @@ model Publicacion {
   ciudad           String
   coordenadas      String
   direccion        String
-  tipoPublicacion  TipoPublicacion @relation(fields: [tipoid], references: [idTipoPublicacion])
-  tipoid           Int
+  tipoPublicacionid Int
+  tipoPropiedadid Int
+  tipoPublicacion  TipoPublicacion @relation(fields: [tipoPublicacionid], references: [idTipoPublicacion])
+  tipoPropiedad  TipoPropiedad @relation(fields: [tipoPropiedadid], references: [idTipoPropiedad])
+
 }
