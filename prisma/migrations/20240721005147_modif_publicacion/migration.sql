@@ -10,6 +10,12 @@ CREATE TABLE "Usuario" (
 );
 
 -- CreateTable
+CREATE TABLE "TipoPropiedad" (
+    "idTipoPropiedad" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "nombre" TEXT NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "TipoPublicacion" (
     "idTipoPublicacion" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "nombre" TEXT NOT NULL
@@ -21,11 +27,14 @@ CREATE TABLE "Publicacion" (
     "titulo" TEXT NOT NULL,
     "descripcion" TEXT NOT NULL,
     "precio" REAL NOT NULL,
-    "estado" BIGINT NOT NULL,
+    "estado" INTEGER NOT NULL,
     "departamento" TEXT NOT NULL,
-    "ciudad" TEXT NOT NULL,
+    "provincia" TEXT NOT NULL,
+    "distrito" TEXT NOT NULL,
     "coordenadas" TEXT NOT NULL,
     "direccion" TEXT NOT NULL,
-    "tipoid" INTEGER NOT NULL,
-    CONSTRAINT "Publicacion_tipoid_fkey" FOREIGN KEY ("tipoid") REFERENCES "TipoPublicacion" ("idTipoPublicacion") ON DELETE RESTRICT ON UPDATE CASCADE
+    "tipoPublicacionid" INTEGER NOT NULL,
+    "tipoPropiedadid" INTEGER NOT NULL,
+    CONSTRAINT "Publicacion_tipoPublicacionid_fkey" FOREIGN KEY ("tipoPublicacionid") REFERENCES "TipoPublicacion" ("idTipoPublicacion") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Publicacion_tipoPropiedadid_fkey" FOREIGN KEY ("tipoPropiedadid") REFERENCES "TipoPropiedad" ("idTipoPropiedad") ON DELETE RESTRICT ON UPDATE CASCADE
 );
