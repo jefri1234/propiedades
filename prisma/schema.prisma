@@ -39,12 +39,12 @@ model Publicacion {
   precio           Float
   estado           Int //(1)activo
   departamento     String
-  ciudad           String
+  provincia     String
+  distrito     String
   coordenadas      String
   direccion        String
   tipoPublicacionid Int
   tipoPropiedadid Int
   tipoPublicacion  TipoPublicacion @relation(fields: [tipoPublicacionid], references: [idTipoPublicacion])
   tipoPropiedad  TipoPropiedad @relation(fields: [tipoPropiedadid], references: [idTipoPropiedad])
-
 }
